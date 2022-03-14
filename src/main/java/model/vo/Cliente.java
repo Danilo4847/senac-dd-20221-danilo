@@ -13,12 +13,13 @@ public class Cliente {
 		super();
 	}
 
-	public Cliente(String nome, String cpf, Endereco endereco, List<Telefone> telefones) {
+	public Cliente(String nome, String cpf, Endereco endereco) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		this.endereco = endereco;
-		this.telefones = telefones;
+
+
 	}
 
 
