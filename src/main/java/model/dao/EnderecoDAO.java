@@ -88,43 +88,32 @@ public class EnderecoDAO {
 		
 		return removeu;
 	}
-	
-	public List<Endereco> consultar(int id) {
+	public Endereco consultar(int id) {
+		Endereco enderecoConsultado = null;
+		Connection conexao = Banco.getConnection();
+		String sql = " SELECT * FROM ENDERECO "
+					+" WHERE ID=?";
+		PreparedStatement stmt = Banco.getPreparedStatement(conexao, sql);
 		
-		ArrayList<Endereco> enderecoConsultado = new ArrayList<Endereco>();
-	
-	Connection conexao = Banco.getConnection();
-
-	ResultSet resultado =null;
-	
-	Endereco valor = new Endereco();
-	String query="SELECT * FROM ENDERECO WHERE IDENDERECO ="+id;
-	Statement st = Banco.getPreparedStatementWithPk(conexao, query);	
-	
 		try {
-			
-			resultado=st.executeQuery(query);
+			stmt.setInt(1, id);
+			ResultSet resultado = stmt.executeQuery();
 			
 			if(resultado.next()) {
-			valor.setCep(resultado.getString(1));
-			valor.setCidade(resultado.getString(2));
-			valor.setUf(resultado.getString(3));
-			valor.setNumero(resultado.getString(4));
-			valor.setId(Integer.parseInt(resultado.getString(5)));
-			valor.setRua(resultado.getString(6));
+				enderecoConsultado = new Endereco();
+				enderecoConsultado.setId(resultado.getInt("id"));
+				enderecoConsultado.setRua(resultado.getString("rua"));
+				enderecoConsultado.setNumero(resultado.getString("numero"));
+				enderecoConsultado.setCidade(resultado.getString("cidade"));
+				enderecoConsultado.setCep(resultado.getString("cep"));
+				enderecoConsultado.setUf(resultado.getString("uf"));
 			}
-			
-			enderecoConsultado.add(valor);
-			
-			
-		}catch (Exception e) {
-		JOptionPane.showConfirmDialog(null,"Erro na execução da query de consulta");
-		System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			System.out.println("Erro ao consultar endereÃ§o (id:" + id + ". Causa:" + e.getMessage());
 		}
 		
 		return enderecoConsultado;
 	}
-	
 	
 	
 	public ArrayList<Endereco> consultarTodos(){
