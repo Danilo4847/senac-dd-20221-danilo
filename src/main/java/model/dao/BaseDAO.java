@@ -1,5 +1,6 @@
 package model.dao;
 
+
 import java.util.List;
 
 public interface BaseDAO<T> {
@@ -13,4 +14,5 @@ public interface BaseDAO<T> {
 	public T consultar(int id);
 	
 	public List<T> consultarTodos();
+
 }

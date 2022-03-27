@@ -108,5 +108,4 @@ String query="SELECT * FROM TELEFONE WHERE ID="+id;
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

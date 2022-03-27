@@ -3,6 +3,7 @@ package model.vo;
 
 import java.time.LocalDateTime;
 
+
 public class LinhaTelefonica {
 	
 	private int id;
@@ -73,3 +74,5 @@ public class LinhaTelefonica {
 		this.idCliente = idCliente;
 	}
 }
+
+
