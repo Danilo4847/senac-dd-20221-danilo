@@ -1,26 +1,23 @@
 package model.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LinhaTelefonicaDAO implements BaseDAO<LinhaTelefonicaDAO> {
 
-	public LinhaTelefonicaDAO inserir(LinhaTelefonicaDAO novo) {
-
+	public LinhaTelefonicaDAO inserir(LinhaTelefonicaDAO novoObjeto) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public boolean alterar(LinhaTelefonicaDAO novo) {
-		boolean status=false;
-		
-		return status;
+	public boolean atualizar(LinhaTelefonicaDAO objeto) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
-	public boolean deletar(int id) {
-		boolean status=false;
-		
-		
-		
-		return status;
+	public boolean remover(int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public LinhaTelefonicaDAO consultar(int id) {
@@ -28,10 +25,11 @@ public class LinhaTelefonicaDAO implements BaseDAO<LinhaTelefonicaDAO> {
 		return null;
 	}
 
-	public ArrayList<LinhaTelefonicaDAO> consultarTodos() {
+	public List<LinhaTelefonicaDAO> consultarTodos() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 	
 	
