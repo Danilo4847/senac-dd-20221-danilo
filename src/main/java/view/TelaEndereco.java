@@ -25,7 +25,7 @@ import java.awt.Color;
 import javax.swing.JList;
 import java.awt.Font;
 
-public class Tela3 extends JFrame {
+public class TelaEndereco extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textRUA;
@@ -41,7 +41,7 @@ public class Tela3 extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Tela3 frame = new Tela3();
+					TelaEndereco frame = new TelaEndereco();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class Tela3 extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Tela3() {
+	public TelaEndereco() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -131,6 +131,10 @@ public class Tela3 extends JFrame {
 		btnNewButton.setBackground(new Color(0, 0, 0));
 		btnNewButton.setFont(new Font("RomanT", Font.BOLD, 12));
 		btnNewButton.addActionListener(new ActionListener() {
+			
+			
+			/*não comente*/
+			
 			public void actionPerformed(ActionEvent arg0) {
 				String numero,uf,cidade,cep,rua;
 				Endereco endereco = new Endereco();
