@@ -63,4 +63,11 @@ public class Cliente {
 	public void setTelefones(List<Telefone> telefones) {
 		this.telefones = telefones;
 	}
+
+	@Override
+	public String toString() {
+		return this.nome+" Cpf= " +this.cpf;
+	}
+	
+	
 }

@@ -57,4 +57,11 @@ public class Telefone {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+
+	@Override
+	public String toString() {
+		return "("+this.ddd+")"+this.numero+" ["+(this.ativo ? "ativo" : "inativo")+"]";
+	}
+	
+	
 }

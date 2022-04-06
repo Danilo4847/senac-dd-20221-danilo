@@ -62,7 +62,7 @@ public class TelaEndereco extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("max(127dlu;default):grow"),
+				ColumnSpec.decode("max(91dlu;default):grow"),
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(129dlu;default):grow"),},
 			new RowSpec[] {
@@ -85,43 +85,45 @@ public class TelaEndereco extends JFrame {
 				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,
 				FormSpecs.RELATED_GAP_ROWSPEC,
+				FormSpecs.DEFAULT_ROWSPEC,
+				FormSpecs.RELATED_GAP_ROWSPEC,
 				FormSpecs.DEFAULT_ROWSPEC,}));
 		
 		JLabel lblNewLabel_3 = new JLabel("UF");
 		lblNewLabel_3.setFont(new Font("Lucida Bright", Font.BOLD, 13));
-		contentPane.add(lblNewLabel_3, "2, 2");
-		
-		JLabel lblRUA = new JLabel("RUA");
-		lblRUA.setFont(new Font("Lucida Bright", Font.BOLD, 12));
-		contentPane.add(lblRUA, "4, 2");
+		contentPane.add(lblNewLabel_3, "2, 4");
 		
 		textUF = new JTextField();
-		contentPane.add(textUF, "2, 4, left, default");
+		contentPane.add(textUF, "4, 4, left, default");
 		textUF.setColumns(10);
-		
-		textRUA = new JTextField();
-		contentPane.add(textRUA, "4, 4, left, default");
-		textRUA.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("CIDADE");
 		lblNewLabel_4.setFont(new Font("Lucida Bright", Font.BOLD, 12));
 		contentPane.add(lblNewLabel_4, "2, 6");
 		
+		textCIDADE = new JTextField();
+		contentPane.add(textCIDADE, "4, 6, left, default");
+		textCIDADE.setColumns(10);
+		
 		JLabel lblNewLabel_2 = new JLabel("NUMERO");
 		lblNewLabel_2.setFont(new Font("Lucida Bright", Font.BOLD, 12));
-		contentPane.add(lblNewLabel_2, "4, 6");
-		
-		textCIDADE = new JTextField();
-		contentPane.add(textCIDADE, "2, 8, left, default");
-		textCIDADE.setColumns(10);
+		contentPane.add(lblNewLabel_2, "2, 8");
 		
 		textNUMERO = new JTextField();
 		contentPane.add(textNUMERO, "4, 8, left, default");
 		textNUMERO.setColumns(10);
 		
+		JLabel lblRUA = new JLabel("RUA");
+		lblRUA.setFont(new Font("Lucida Bright", Font.BOLD, 12));
+		contentPane.add(lblRUA, "2, 10");
+		
+		textRUA = new JTextField();
+		contentPane.add(textRUA, "4, 10, left, default");
+		textRUA.setColumns(10);
+		
 		JLabel lblNewLabel_1 = new JLabel("CEP");
 		lblNewLabel_1.setFont(new Font("Lucida Bright", Font.BOLD, 12));
-		contentPane.add(lblNewLabel_1, "4, 10");
+		contentPane.add(lblNewLabel_1, "2, 12");
 		
 		textCEP = new JTextField();
 		contentPane.add(textCEP, "4, 12, left, default");
@@ -155,7 +157,7 @@ public class TelaEndereco extends JFrame {
 				enderecoDAO.inserir(endereco);
 			}
 		});
-		contentPane.add(btnNewButton, "4, 20");
+		contentPane.add(btnNewButton, "4, 20, center, default");
 	}
 
 }
