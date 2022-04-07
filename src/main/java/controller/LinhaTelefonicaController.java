@@ -2,14 +2,21 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.bo.LinhaTelefonicaBO;
 import model.dao.LinhaTelefonicaDAO;
+import model.vo.Cliente;
 import model.vo.LinhaTelefonica;
 
 public class LinhaTelefonicaController {
-
-public ArrayList<LinhaTelefonica> consulta(){
 	LinhaTelefonicaDAO telefonica = new LinhaTelefonicaDAO();
-	return telefonica.consultarTodos();
-}
+	LinhaTelefonicaBO bo = new LinhaTelefonicaBO();
+	public ArrayList<LinhaTelefonica> consulta(){
+		return telefonica.consultarTodos();
+	}
 	
+	
+	public Cliente obterUltimoClienteLinha(int idCliente) {
+		return bo.obterUltimoClienteDaLinhaTelefonica(idCliente);
+	}
+
 }

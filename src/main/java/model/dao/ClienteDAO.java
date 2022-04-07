@@ -82,16 +82,17 @@ public class ClienteDAO {
 		return status;
 	}
 
-	public void consultarCliente(int id) {
+	public Cliente consultarCliente(int id) {
 		Connection conexao = Banco.getConnection();
-		String query = "SELECT*FROM CLIENTE WHERE IDCLIENTE=" + id;
+		String query = "SELECT CPF, NOME, ID FROM CLIENTE WHERE ID=" + id;
 		PreparedStatement stmt = Banco.getPreparedStatementWithPk(conexao, query);
 		ResultSet resultado = null;
 
+		Cliente cliente = null;
 		try {
 			resultado = stmt.executeQuery(query);
 			while (resultado.next()) {
-				Cliente cliente = new Cliente();
+				cliente = new Cliente();
 				cliente.setCpf(resultado.getString(1));
 				cliente.setNome(resultado.getString(2));
 				cliente.setId(Integer.parseInt(resultado.getString(3)));
@@ -101,7 +102,8 @@ public class ClienteDAO {
 			JOptionPane.showMessageDialog(null,
 					"não foi possivel executara  aquery de consulta dp cliente.   " + e.getMessage());
 		}
-
+		
+		return cliente;
 	}
 
 	private Cliente construirDoResultSet(ResultSet resultado) throws SQLException {

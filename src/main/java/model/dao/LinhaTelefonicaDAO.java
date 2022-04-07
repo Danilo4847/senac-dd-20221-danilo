@@ -8,6 +8,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.vo.Cliente;
 import model.vo.LinhaTelefonica;
 import model.vo.Telefone;
 
@@ -109,7 +110,7 @@ public class LinhaTelefonicaDAO {
 
 		Timestamp dataAtivacao = resultado.getTimestamp("dt_ativacao");
 		Timestamp dataDesativacao = resultado.getTimestamp("dt_desativacao");
-		
+
 		//FONTE: https://stackoverflow.com/questions/23263490/how-to-convert-java-sql-timestamp-to-localdate-java8-java-time
 		if(dataAtivacao != null) {
 			linhaTelefonicaConsultada.setDataAtivacao(dataAtivacao.toLocalDateTime());
@@ -165,5 +166,29 @@ public class LinhaTelefonicaDAO {
 		}
 
 		return linhasDoCliente;
+	}
+
+	public Cliente obterUltimoClienteDaLinhaTelefonica(int idTelefone) {
+
+		Connection conexao = Banco.getConnection();
+		String query=" select id_cliente from linha_telefonica where id_telefone=? and dt_desativacao is null";
+		PreparedStatement stmt =Banco.getPreparedStatement(conexao, query);
+
+		Cliente dono = null;
+		try {
+			stmt.setInt(1, idTelefone);
+			ResultSet resultado=stmt.executeQuery();
+			
+			if(resultado.next()) {
+				int idCliente = resultado.getInt(1);
+				
+				ClienteDAO clienteDAO = new ClienteDAO();
+				dono = clienteDAO.consultarCliente(idCliente);
+			}
+		} catch (Exception e) {
+			System.out.println("Causa:" + e.getMessage());
+		}
+
+		return dono;
 	}
 }
