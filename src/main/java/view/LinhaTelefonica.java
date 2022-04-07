@@ -68,7 +68,7 @@ public class LinhaTelefonica {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(51, 153, 153));
+		frame.getContentPane().setBackground(new Color(153, 204, 153));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
