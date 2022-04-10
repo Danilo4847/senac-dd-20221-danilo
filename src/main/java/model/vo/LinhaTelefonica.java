@@ -11,6 +11,7 @@ public class LinhaTelefonica {
 	private int idCliente; //para evitar looping
 	private LocalDateTime dataAtivacao; 
 	private LocalDateTime dataDesativacao;
+	public Object frame;
 	
 	public LinhaTelefonica() {
 	}

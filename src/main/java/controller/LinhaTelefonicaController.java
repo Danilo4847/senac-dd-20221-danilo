@@ -18,5 +18,7 @@ public class LinhaTelefonicaController {
 	public Cliente obterUltimoClienteLinha(int idCliente) {
 		return bo.obterUltimoClienteDaLinhaTelefonica(idCliente);
 	}
-
+	public Cliente obterTelefoneDesabilitado(int idCliente) { 
+		return bo.obterUltimoClienteDaLinhaTelefonica(idCliente);
+	}
 }

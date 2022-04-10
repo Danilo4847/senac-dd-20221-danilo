@@ -13,6 +13,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import controller.ClienteController;
 import controller.LinhaTelefonicaController;
 import controller.TelefoneController;
+import model.dao.LinhaTelefonicaDAO;
+import model.dao.TelefoneDAO;
 import model.vo.Cliente;
 import model.vo.Telefone;
 
@@ -20,6 +22,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.event.ActionEvent;
@@ -31,6 +34,8 @@ public class LinhaTelefonica {
 	ClienteController clienteController = new ClienteController();
 	TelefoneController telefoneController = new TelefoneController();
 	LinhaTelefonicaController linhaTelefonicaController = new LinhaTelefonicaController();
+	LocalDateTime agora = LocalDateTime.now();
+
 
 	private JFrame frame;
 	private JLabel lblNewLabel_2;
@@ -39,6 +44,10 @@ public class LinhaTelefonica {
 	private ArrayList<Cliente> clientes;
 	private JButton btnAssociar;
 	private JButton btnLiberarLinha;
+	
+	
+	
+	
 
 	/**
 	 * Launch the application.
@@ -64,11 +73,11 @@ public class LinhaTelefonica {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
-	 */
+	 * Initialize the contents of th00, 149, 237*/
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(153, 204, 153));
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danil\\Downloads\\no-mundo-todo.png"));
+		frame.getContentPane().setBackground(new Color(51, 153, 204));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -82,28 +91,33 @@ public class LinhaTelefonica {
 		cbTelefone.setSelectedIndex(-1);
 
 		cbTelefone.addActionListener(new ActionListener() {
-
+			
+			/*validação de campos*/
+			
 			public void actionPerformed(ActionEvent e) {
 				Telefone telefone = (Telefone)cbTelefone.getSelectedItem();
-
 				if(telefone!=null) {
 					if(telefone.isAtivo()) {
+						
 						btnAssociar.setEnabled(false);
 						btnLiberarLinha.setEnabled(true);
-
+						Cliente dono = linhaTelefonicaController.obterUltimoClienteLinha(telefone.getId());
+						cbUsuario.getModel().setSelectedItem(dono);
+				
 
 					}else {
 						//Buscar dono da linha atual
-						Cliente dono = linhaTelefonicaController.obterUltimoClienteLinha(telefone.getId());
-						cbUsuario.getModel().setSelectedItem(dono);
+
 						btnAssociar.setEnabled(true);
 						btnLiberarLinha.setEnabled(false);
+						Cliente dono =linhaTelefonicaController.obterUltimoClienteLinha(telefone.getId());
+						cbUsuario.getModel().setSelectedItem(dono);
 					}
 				}
 			}
 		});
 
-		JLabel lblNewLabel = new JLabel("Usu\u00E1rio");
+		JLabel lblNewLabel = new JLabel("Cliente");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 
@@ -112,10 +126,44 @@ public class LinhaTelefonica {
 		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 
 		btnAssociar = new JButton("Associar");
+		
+		/*Inserção de nova linha telefonica*/
+		
+		btnAssociar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cliente cliente = new Cliente();
+				cliente=(Cliente)cbUsuario.getModel().getSelectedItem();
+				int id_cliente=cliente.getId();
+				Telefone tel =(Telefone)cbTelefone.getModel().getSelectedItem();
+
+
+				model.vo.LinhaTelefonica linha = new model.vo.LinhaTelefonica(tel,id_cliente,agora,null);
+				LinhaTelefonicaDAO dao = new LinhaTelefonicaDAO();
+				dao.inserir(linha);
+
+			}
+		});
+		
+		
+		
+		
 		btnAssociar.setFont(new Font("Times New Roman", Font.PLAIN, 12));
-
-
 		btnLiberarLinha = new JButton("Liberar");
+		
+		/*Liberar Cliente*/
+		
+		
+		btnLiberarLinha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Telefone tel =(Telefone)cbTelefone.getModel().getSelectedItem();
+	
+				model.vo.LinhaTelefonica linha = new model.vo.LinhaTelefonica();
+				TelefoneDAO telDAO = new TelefoneDAO();
+				int telefone_id=tel.getId();
+				telDAO.consultar(telefone_id);
+				
+			}
+		});
 		btnLiberarLinha.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 
 		lblNewLabel_2 = new JLabel("Linha Telefonica");

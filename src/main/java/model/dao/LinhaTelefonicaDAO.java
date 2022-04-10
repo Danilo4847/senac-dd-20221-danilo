@@ -178,10 +178,10 @@ public class LinhaTelefonicaDAO {
 		try {
 			stmt.setInt(1, idTelefone);
 			ResultSet resultado=stmt.executeQuery();
-			
+
 			if(resultado.next()) {
 				int idCliente = resultado.getInt(1);
-				
+
 				ClienteDAO clienteDAO = new ClienteDAO();
 				dono = clienteDAO.consultarCliente(idCliente);
 			}
@@ -191,4 +191,29 @@ public class LinhaTelefonicaDAO {
 
 		return dono;
 	}
+	public Cliente obterTelefoneDesativado(int idTelefone) {
+
+		Connection conexao = Banco.getConnection();
+		String query=" select id_cliente from linha_telefonica where id_telefone=? and dt_desativacao is not null";
+		PreparedStatement stmt =Banco.getPreparedStatement(conexao, query);
+
+		Cliente dono = null;
+		try {
+			stmt.setInt(1, idTelefone);
+			ResultSet resultado=stmt.executeQuery();
+
+			if(resultado.next()) {
+				int idCliente = resultado.getInt(1);
+
+				ClienteDAO clienteDAO = new ClienteDAO();
+				dono = clienteDAO.consultarCliente(idCliente);
+			}
+		} catch (Exception e) {
+			System.out.println("Causa:" + e.getMessage());
+		}
+
+		return dono;
+	}
+	
+	
 }
