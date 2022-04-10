@@ -95,7 +95,9 @@ public class LinhaTelefonica {
 			/*validação de campos*/
 			
 			public void actionPerformed(ActionEvent e) {
+				
 				Telefone telefone = (Telefone)cbTelefone.getSelectedItem();
+				
 				if(telefone!=null) {
 					if(telefone.isAtivo()) {
 						
@@ -111,7 +113,10 @@ public class LinhaTelefonica {
 						btnAssociar.setEnabled(true);
 						btnLiberarLinha.setEnabled(false);
 						Cliente dono =linhaTelefonicaController.obterUltimoClienteLinha(telefone.getId());
+				
 						cbUsuario.getModel().setSelectedItem(dono);
+	
+					
 					}
 				}
 			}
