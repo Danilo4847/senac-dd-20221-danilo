@@ -11,5 +11,9 @@ public class ClienteController {
 		ClienteDAO cliente = new ClienteDAO();
 		return cliente.consultarTodos();
 	}
+	public Cliente consultarClienteCpf(String cpf) {
+		ClienteDAO cliente = new ClienteDAO();
+		return cliente.consultarClientePorCpf(cpf);
+	}
 	
 }

@@ -9,9 +9,9 @@ public class TelefoneController {
 
 	
 	public ArrayList<Telefone>consultar(){
-		TelefoneDAO telefone = new TelefoneDAO();
-		
+		TelefoneDAO telefone = new TelefoneDAO();	
 		return telefone.consultarTodos();
 	}
+
 	
 }

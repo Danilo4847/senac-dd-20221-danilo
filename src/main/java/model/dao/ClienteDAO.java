@@ -102,7 +102,7 @@ public class ClienteDAO {
 			JOptionPane.showMessageDialog(null,
 					"não foi possivel executara  aquery de consulta dp cliente.   " + e.getMessage());
 		}
-		
+
 		return cliente;
 	}
 
@@ -111,28 +111,28 @@ public class ClienteDAO {
 		clienteConsultado.setId(resultado.getInt("id"));
 		clienteConsultado.setCpf(resultado.getString("cpf"));
 		clienteConsultado.setNome(resultado.getString("nome"));
-		
+
 		EnderecoDAO enderecoDAO = new EnderecoDAO();
 		Endereco enderecoDoCliente = enderecoDAO.consultar(resultado.getInt("id_endereco"));
 		clienteConsultado.setEndereco(enderecoDoCliente);
-		
+
 		LinhaTelefonicaDAO linhaDAO = new LinhaTelefonicaDAO();
 		ArrayList<LinhaTelefonica> linhas = linhaDAO.consultarPorIdCliente(resultado.getInt("id"));
-	
-		
+
+
 		return clienteConsultado;
 	}
-	
+
 
 	public ArrayList<Cliente> consultarTodos(){
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 		Connection conexao = Banco.getConnection();
 		String sql = " SELECT * FROM CLIENTE ";
 		PreparedStatement stmt = Banco.getPreparedStatement(conexao, sql);
-		
+
 		try {
 			ResultSet resultado = stmt.executeQuery();
-			
+
 			while(resultado.next()) {
 				Cliente clienteConsultado = construirDoResultSet(resultado);
 				clientes.add(clienteConsultado);
@@ -140,8 +140,33 @@ public class ClienteDAO {
 		} catch (SQLException e) {
 			System.out.println("Erro ao consultar todos os clientes. Causa:" + e.getMessage());
 		}
-		
+
 		return clientes;
+	}
+
+	public Cliente consultarClientePorCpf(String cpf) {
+		Connection banco= Banco.getConnection();
+		String query="SELECT*FROM CLIENTE WHERE CPF="+cpf;
+		PreparedStatement stmt = Banco.getPreparedStatement(banco, query);
+		Cliente cliente=null;
+
+		ResultSet resultado = null;
+		try {
+			resultado=stmt.executeQuery(query);
+			while(resultado.next()) {
+				cliente = new Cliente();
+				cliente.setCpf(resultado.getString(1));
+				cliente.setNome(resultado.getString(2));
+				cliente.setId(resultado.getInt(3));
+		
+			}
+		} catch (SQLException e) {
+		JOptionPane.showMessageDialog(null, e.getCause());
+		}
+
+		return cliente;
+
+
 	}
 
 
