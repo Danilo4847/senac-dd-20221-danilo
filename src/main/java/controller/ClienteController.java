@@ -6,14 +6,15 @@ import model.dao.ClienteDAO;
 import model.vo.Cliente;
 
 public class ClienteController {
-
+	ClienteDAO cliente = new ClienteDAO();
 	public ArrayList<Cliente>clientes(){ 
-		ClienteDAO cliente = new ClienteDAO();
 		return cliente.consultarTodos();
 	}
 	public Cliente consultarClienteCpf(String cpf) {
-		ClienteDAO cliente = new ClienteDAO();
 		return cliente.consultarClientePorCpf(cpf);
+	}
+	public boolean excluirCliente(int id) {
+		return cliente.removerCliente(id);
 	}
 	
 }

@@ -61,7 +61,7 @@ public class TelaListagem {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(95, 158, 160));
+		frame.getContentPane().setBackground(new Color(255, 204, 0));
 		frame.getContentPane().setForeground(new Color(95, 158, 160));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

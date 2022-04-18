@@ -135,6 +135,7 @@ public class LinhaTelefonica {
 		
 		btnAssociar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				Cliente cliente = new Cliente();
 				cliente=(Cliente)cbUsuario.getModel().getSelectedItem();
 				int id_cliente=cliente.getId();

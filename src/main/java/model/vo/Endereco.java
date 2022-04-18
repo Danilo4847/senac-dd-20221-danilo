@@ -63,8 +63,8 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", rua=" + rua + ", numero=" + numero + ", cidade=" + cidade + ", uf=" + uf
-				+ ", cep=" + cep + "]";
+		return "id=" + id + ", rua=" + rua + ", numero=" + numero + ", cidade=" + cidade + ", uf=" + uf
+				+ ", cep=" + cep;
 	}
 	
 	

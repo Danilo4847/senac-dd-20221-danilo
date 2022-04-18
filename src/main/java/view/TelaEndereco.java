@@ -57,7 +57,7 @@ public class TelaEndereco extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(255, 140, 0));
+		contentPane.setBackground(new Color(255, 204, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
@@ -94,7 +94,7 @@ public class TelaEndereco extends JFrame {
 		contentPane.add(lblNewLabel_3, "2, 4");
 		
 		textUF = new JTextField();
-		contentPane.add(textUF, "4, 4, left, default");
+		contentPane.add(textUF, "4, 4, fill, default");
 		textUF.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("CIDADE");
@@ -102,7 +102,7 @@ public class TelaEndereco extends JFrame {
 		contentPane.add(lblNewLabel_4, "2, 6");
 		
 		textCIDADE = new JTextField();
-		contentPane.add(textCIDADE, "4, 6, left, default");
+		contentPane.add(textCIDADE, "4, 6, fill, default");
 		textCIDADE.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("NUMERO");
@@ -110,7 +110,7 @@ public class TelaEndereco extends JFrame {
 		contentPane.add(lblNewLabel_2, "2, 8");
 		
 		textNUMERO = new JTextField();
-		contentPane.add(textNUMERO, "4, 8, left, default");
+		contentPane.add(textNUMERO, "4, 8, fill, default");
 		textNUMERO.setColumns(10);
 		
 		JLabel lblRUA = new JLabel("RUA");
@@ -118,7 +118,7 @@ public class TelaEndereco extends JFrame {
 		contentPane.add(lblRUA, "2, 10");
 		
 		textRUA = new JTextField();
-		contentPane.add(textRUA, "4, 10, left, default");
+		contentPane.add(textRUA, "4, 10, fill, default");
 		textRUA.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("CEP");
@@ -126,7 +126,7 @@ public class TelaEndereco extends JFrame {
 		contentPane.add(lblNewLabel_1, "2, 12");
 		
 		textCEP = new JTextField();
-		contentPane.add(textCEP, "4, 12, left, default");
+		contentPane.add(textCEP, "4, 12, fill, default");
 		textCEP.setColumns(10);
 		
 		JButton btnNewButton = new JButton("ENTER");
@@ -157,7 +157,7 @@ public class TelaEndereco extends JFrame {
 				enderecoDAO.inserir(endereco);
 			}
 		});
-		contentPane.add(btnNewButton, "4, 20, center, default");
+		contentPane.add(btnNewButton, "4, 18, center, default");
 	}
 
 }

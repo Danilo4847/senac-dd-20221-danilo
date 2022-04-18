@@ -69,5 +69,4 @@ public class Cliente {
 		return this.nome+" Cpf= " +this.cpf;
 	}
 	
-	
 }

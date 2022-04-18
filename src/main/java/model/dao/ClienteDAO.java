@@ -146,7 +146,7 @@ public class ClienteDAO {
 
 	public Cliente consultarClientePorCpf(String cpf) {
 		Connection banco= Banco.getConnection();
-		String query="SELECT*FROM CLIENTE WHERE CPF="+cpf;
+		String query="SELECT * FROM CLIENTE WHERE CPF="+cpf;
 		PreparedStatement stmt = Banco.getPreparedStatement(banco, query);
 		Cliente cliente=null;
 
@@ -154,11 +154,7 @@ public class ClienteDAO {
 		try {
 			resultado=stmt.executeQuery(query);
 			while(resultado.next()) {
-				cliente = new Cliente();
-				cliente.setCpf(resultado.getString(1));
-				cliente.setNome(resultado.getString(2));
-				cliente.setId(resultado.getInt(3));
-		
+				cliente = construirDoResultSet(resultado);
 			}
 		} catch (SQLException e) {
 		JOptionPane.showMessageDialog(null, e.getCause());

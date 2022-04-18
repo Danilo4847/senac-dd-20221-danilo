@@ -57,7 +57,7 @@ public class TelaCadastroUsuario extends JFrame {
 	 */
 	public TelaCadastroUsuario() {
 
-		getContentPane().setBackground(Color.WHITE);
+		getContentPane().setBackground(new Color(255, 204, 0));
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
