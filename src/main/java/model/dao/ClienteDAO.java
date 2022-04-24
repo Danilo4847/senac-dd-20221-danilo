@@ -69,7 +69,7 @@ public class ClienteDAO {
 	public boolean removerCliente(int id) {
 		boolean status = false;
 		Connection conexao = Banco.getConnection();
-		String query = "DELETE FROM CLIENTE WHERE idcliente=?";
+		String query = "DELETE FROM CLIENTE WHERE id=?";
 		PreparedStatement stmt = Banco.getPreparedStatementWithPk(conexao, query);
 
 		try {
