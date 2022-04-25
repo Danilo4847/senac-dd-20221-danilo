@@ -43,7 +43,7 @@ public class TelaCadastroUsuario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroUsuario frame = new TelaCadastroUsuario();
+					TelaCadastroUsuario frame = new TelaCadastroUsuario(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,9 +54,10 @@ public class TelaCadastroUsuario extends JFrame {
 
 	/**
 	 * Create the application.
+	 * @param clienteSelecionado 
 	 */
-	public TelaCadastroUsuario() {
-
+	public TelaCadastroUsuario(Cliente clienteSelecionado) {
+		
 		getContentPane().setBackground(new Color(255, 204, 0));
 		setBounds(100, 100, 450, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,18 +86,24 @@ public class TelaCadastroUsuario extends JFrame {
 		textcpf.setColumns(10);
 
 		JButton btnInseir = new JButton("INSERIR");
-		btnInseir.setForeground(new Color(220, 20, 60));
+		btnInseir.setForeground(new Color(0, 0, 0));
 		btnInseir.setBackground(new Color(51, 102, 153));
 		btnInseir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String nome,cpf;
-				nome=textnome.getText();
-				cpf=textcpf.getText();
-				Cliente cliente = new Cliente();
-				cliente.setCpf(cpf);
-				cliente.setNome(nome);
+
 				ClienteDAO clienteDAO = new ClienteDAO();
-				clienteDAO.inserirCliente(cliente);
+				
+				
+				if(cliente.getId() > 0) {
+					clienteDAO.atualizarCliente(cliente);
+				}else {
+					clienteDAO.inserirCliente(cliente);
+					String nome,cpf;
+					nome=textnome.getText();
+					cpf=textcpf.getText();
+					cliente.setCpf(cpf);
+					cliente.setNome(nome);
+				}
 				limpar();
 
 			}
@@ -111,8 +118,19 @@ public class TelaCadastroUsuario extends JFrame {
 		lblNewLabel.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
 
 		JButton btnAlterar = new JButton("ALTERAR");
-		btnAlterar.setForeground(new Color(255, 0, 0));
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		btnAlterar.setForeground(new Color(0, 0, 0));
 		btnAlterar.setBackground(new Color(51, 102, 153));
+		
+		if(clienteSelecionado != null) {
+			this.cliente = clienteSelecionado;
+			this.preencherCliente();
+		}
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 				groupLayout.createParallelGroup(Alignment.TRAILING)
