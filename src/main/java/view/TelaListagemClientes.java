@@ -37,7 +37,7 @@ public class TelaListagemClientes extends JFrame{
 	Cliente clienteSelecionado = new Cliente();
 	private JTable tabela;
 	private JButton btnNovoCliente;
-	private JButton btnExcluir;
+	private JButton btnExcluir; 
 	private AbstractButton btnEditar;
 
 
@@ -113,61 +113,57 @@ public class TelaListagemClientes extends JFrame{
 		JLabel lblNewLabel = new JLabel("LISTA DE CLIENTE");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
 
-		JButton btnNewButton = new JButton("New button");
+		JButton btnNewButton = new JButton("Atualizar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				clientes=clienteController.clientes();
+				
 				atualizarTabela();
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup()
-										.addGap(20)
-										.addComponent(btnNovoCliente, GroupLayout.PREFERRED_SIZE, 224, GroupLayout.PREFERRED_SIZE)
-										.addGap(43)
-										.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 226, GroupLayout.PREFERRED_SIZE)
-										.addGap(43)
-										.addComponent(btnExcluir, GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)))
-						.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-						.addContainerGap(339, Short.MAX_VALUE)
-						.addComponent(lblNewLabel)
-						.addGap(331))
-				.addGroup(groupLayout.createSequentialGroup()
-						.addContainerGap(349, Short.MAX_VALUE)
-						.addComponent(btnNewButton)
-						.addGap(346))
-				);
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+							.addContainerGap())
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(lblNewLabel)
+							.addGap(331))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnNovoCliente, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+							.addGap(30)
+							.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+							.addGap(31)
+							.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())))
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addGap(14)
-						.addComponent(lblNewLabel)
-						.addGap(18)
-						.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-						.addPreferredGap(ComponentPlacement.UNRELATED)
-						.addComponent(btnNewButton)
-						.addPreferredGap(ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-										.addComponent(btnExcluir, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-										.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE)))
-						.addContainerGap())
-				);
+					.addGap(14)
+					.addComponent(lblNewLabel)
+					.addGap(18)
+					.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+					.addGap(50)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnExcluir, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+						.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
+		);
 		getContentPane().setLayout(groupLayout);
 
 
 	}
 
 	private void atualizarTabela() {
+		clientes=clienteController.clientes();
 		tabela.setModel(new DefaultTableModel(new String[][] {{"nome","cpf","id"},},new String[] {"nome","cpf","id"}));
 		DefaultTableModel modelo=(DefaultTableModel)tabela.getModel();
 		for(Cliente c: clientes) {
