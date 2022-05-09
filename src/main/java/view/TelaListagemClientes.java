@@ -30,6 +30,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.Toolkit;
+import javax.swing.JSeparator;
 
 public class TelaListagemClientes extends JFrame{
 	ClienteController clienteController = new ClienteController();
@@ -64,7 +65,7 @@ public class TelaListagemClientes extends JFrame{
 		btnNovoCliente = new JButton("Novo Cliente");
 		btnNovoCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TelaCadastroUsuario(null).setVisible(true);
+				new PainelCadastroUsuario(null).setVisible(true);
 				setVisible(false);
 
 			}
@@ -87,7 +88,7 @@ public class TelaListagemClientes extends JFrame{
 		btnEditar.setEnabled(false);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TelaCadastroUsuario(clienteSelecionado).setVisible(true);
+				new PainelCadastroUsuario(clienteSelecionado).setVisible(true);
 				setVisible(false);
 			}
 		});
@@ -120,27 +121,28 @@ public class TelaListagemClientes extends JFrame{
 				atualizarTabela();
 			}
 		});
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(Color.BLACK);
+		separator.setBackground(Color.BLACK);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
-							.addContainerGap())
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblNewLabel)
-							.addGap(331))
-						.addGroup(groupLayout.createSequentialGroup()
+						.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+						.addComponent(lblNewLabel)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(btnNovoCliente, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
 							.addGap(30)
 							.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
 							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
 							.addGap(31)
-							.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
-							.addContainerGap())))
+							.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)))
+					.addContainerGap())
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -149,7 +151,9 @@ public class TelaListagemClientes extends JFrame{
 					.addComponent(lblNewLabel)
 					.addGap(18)
 					.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-					.addGap(50)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnExcluir, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
 						.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)

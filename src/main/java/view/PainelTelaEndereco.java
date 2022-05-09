@@ -25,7 +25,7 @@ import java.awt.Color;
 import javax.swing.JList;
 import java.awt.Font;
 
-public class TelaEndereco extends JFrame {
+public class PainelTelaEndereco extends JPanel {
 
 	private JPanel contentPane;
 	private JTextField textRUA;
@@ -37,29 +37,17 @@ public class TelaEndereco extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaEndereco frame = new TelaEndereco();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaEndereco() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public PainelTelaEndereco() {
+		
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 204, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		
 		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
 				FormSpecs.RELATED_GAP_COLSPEC,
 				ColumnSpec.decode("max(91dlu;default):grow"),

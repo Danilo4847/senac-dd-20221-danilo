@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import model.dao.ClienteDAO;
@@ -24,8 +25,11 @@ import controller.ClienteController;
 import controller.EnderecoController;
 
 import javax.swing.JComboBox;
+import javax.swing.SwingConstants;
+import java.awt.Component;
+import java.awt.SystemColor;
 
-public class TelaCadastroUsuario extends JFrame {
+public class PainelCadastroUsuario extends JPanel {
 	Endereco endereco= new Endereco();
 	EnderecoController enderecoController= new EnderecoController();
 	Cliente cliente = new Cliente();
@@ -37,30 +41,14 @@ public class TelaCadastroUsuario extends JFrame {
 	 * Launch the application.
 	 */
 
-
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroUsuario frame = new TelaCadastroUsuario(null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
 	/**
 	 * Create the application.
 	 * @param clienteSelecionado 
 	 */
-	public TelaCadastroUsuario(Cliente clienteSelecionado) {
-		
-		getContentPane().setBackground(new Color(255, 204, 0));
+	public PainelCadastroUsuario(Cliente clienteSelecionado) {
+		setBackground(SystemColor.activeCaption);
+
 		setBounds(100, 100, 450, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JLabel txtNome = new JLabel("Nome ");
 		txtNome.setFont(new Font("Yu Gothic UI Light", Font.PLAIN, 14));
@@ -131,50 +119,51 @@ public class TelaCadastroUsuario extends JFrame {
 			this.preencherCliente();
 		}
 		
-		GroupLayout groupLayout = new GroupLayout(getContentPane());
+		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-				groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-						.addContainerGap()
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtCpf)
-								.addComponent(txtNome)
-								.addComponent(lblNewLabel))
-						.addGap(14)
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(cbEndereco, 0, 335, Short.MAX_VALUE)
-								.addComponent(textcpf, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-								.addComponent(textnome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-										.addGap(33)
-										.addComponent(btnInseir, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)
-										.addGap(18)
-										.addComponent(btnAlterar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-										.addGap(34)))
-						.addGap(19))
-				);
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtCpf)
+						.addComponent(txtNome)
+						.addComponent(lblNewLabel))
+					.addGap(14)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(cbEndereco, 0, 351, Short.MAX_VALUE)
+						.addComponent(textcpf, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+						.addComponent(textnome, GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(btnInseir, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+							.addGap(69)
+							.addComponent(btnAlterar, GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)))
+					.addGap(19))
+		);
 		groupLayout.setVerticalGroup(
-				groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-						.addContainerGap(28, Short.MAX_VALUE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtCpf)
-								.addComponent(textcpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(18)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtNome)
-								.addComponent(textnome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGap(23)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblNewLabel)
-								.addComponent(cbEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnAlterar, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnInseir, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE))
-						.addGap(39))
-				);
-		getContentPane().setLayout(groupLayout);
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(66)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtCpf)
+						.addComponent(textcpf, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(txtNome)
+						.addComponent(textnome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(23)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel)
+						.addComponent(cbEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(46)
+							.addComponent(btnInseir, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(45)
+							.addComponent(btnAlterar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+					.addContainerGap())
+		);
+	this.setLayout(groupLayout);
 
 
 
