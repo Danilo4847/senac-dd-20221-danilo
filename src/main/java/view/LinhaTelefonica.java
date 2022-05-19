@@ -29,7 +29,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
-public class LinhaTelefonica {
+public class LinhaTelefonica extends JPane{
 	ClienteController clienteController = new ClienteController();
 	TelefoneController telefoneController = new TelefoneController();
 	LinhaTelefonicaController linhaTelefonicaController = new LinhaTelefonicaController();

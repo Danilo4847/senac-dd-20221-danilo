@@ -31,6 +31,7 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 import java.awt.Toolkit;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 
 public class TelaListagemClientes extends JFrame{
 	ClienteController clienteController = new ClienteController();
@@ -40,6 +41,9 @@ public class TelaListagemClientes extends JFrame{
 	private JButton btnNovoCliente;
 	private JButton btnExcluir; 
 	private AbstractButton btnEditar;
+	private JTextField textConsultaNome;
+	private JTextField textConsultaCPF;
+	private JTextField textConsultaID;
 
 
 	public static void main(String[] args) {
@@ -58,7 +62,7 @@ public class TelaListagemClientes extends JFrame{
 
 	public TelaListagemClientes() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\danilo.santos1\\Pictures\\transferir.jfif"));
-		setBounds(100, 100, 800, 400);
+		setBounds(100, 100, 800, 422);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setBackground(new Color(218, 165, 32));
 
@@ -111,7 +115,7 @@ public class TelaListagemClientes extends JFrame{
 
 		clientes=clienteController.clientes();
 		atualizarTabela();
-		JLabel lblNewLabel = new JLabel("LISTA DE CLIENTE");
+		JLabel lblNewLabel = new JLabel("LISTA DE CONSULTA DE CLIENTES");
 		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 14));
 
 		JButton btnNewButton = new JButton("Atualizar");
@@ -125,14 +129,29 @@ public class TelaListagemClientes extends JFrame{
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.BLACK);
 		separator.setBackground(Color.BLACK);
+		
+		textConsultaNome = new JTextField();
+		textConsultaNome.setColumns(10);
+		
+		JLabel lblNewLabel_1 = new JLabel("Nome");
+		
+		JLabel lblNewLabel_2 = new JLabel("cpf");
+		
+		textConsultaCPF = new JTextField();
+		textConsultaCPF.setColumns(10);
+		
+		textConsultaID = new JTextField();
+		textConsultaID.setColumns(10);
+		
+		JLabel lblNewLabel_3 = new JLabel("id");
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
-						.addComponent(lblNewLabel)
+						.addComponent(tabela, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(btnNovoCliente, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
 							.addGap(30)
@@ -142,15 +161,41 @@ public class TelaListagemClientes extends JFrame{
 							.addGap(31)
 							.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
-				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(130)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(textConsultaNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNewLabel_1))
+					.addGap(87)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(textConsultaCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+							.addGap(73)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textConsultaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addGap(236))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(14)
+					.addContainerGap()
 					.addComponent(lblNewLabel)
-					.addGap(18)
-					.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+					.addGap(26)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblNewLabel_1)
+						.addComponent(lblNewLabel_2)
+						.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textConsultaCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textConsultaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textConsultaNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(68)
+					.addComponent(tabela, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
@@ -181,4 +226,6 @@ public class TelaListagemClientes extends JFrame{
 		}
 
 	}
+	
+	
 }
