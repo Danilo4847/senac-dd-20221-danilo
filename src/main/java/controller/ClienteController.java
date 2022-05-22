@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import model.dao.ClienteDAO;
+import model.seletor.ClienteSeletor;
 import model.vo.Cliente;
 
 public class ClienteController {
@@ -19,6 +20,9 @@ public class ClienteController {
 	}
 	public Cliente consultarClientePorId(int id) {
 		return cliente.consultarCliente(id);
+	}
+	public ArrayList<Cliente> listaConsulta(ClienteSeletor selecionado){
+		return cliente.listaClientes(selecionado);
 	}
 	
 }

@@ -1,14 +1,34 @@
 package model.seletor;
 
+import view.TelaListagemClientes;
+
 public class ClienteSeletor {
 	
 	private int idCliente;
 	private String nomeCliente;
 	private String cpfCliente;
 	
+	private int limite;
+	private int pagina;
 	
 	
+	public ClienteSeletor() {
 	
+		this.limite = 0;
+		this.pagina = -1;
+	}
+	public int getLimite() {
+		return limite;
+	}
+	public void setLimite(int limite) {
+		this.limite = limite;
+	}
+	public int getPagina() {
+		return pagina;
+	}
+	public void setPagina(int pagina) {
+		this.pagina = pagina;
+	}
 	public int getIdCliente() {
 		return idCliente;
 	}
@@ -29,6 +49,7 @@ public class ClienteSeletor {
 	}
 	
 	
+	
 	public boolean temFiltro() {
 		if(this.idCliente>0) {
 			return true;
@@ -42,9 +63,13 @@ public class ClienteSeletor {
 		return false;
 		
 	}
+	public boolean temPagina() {
+		return((this.limite>0)&&(this.pagina>-1)) ;
+	}
+	
+	public int getOffset() {
+		return(this.limite*(this.pagina-1));
+	}
 	
 	
-	
-	
-
 }

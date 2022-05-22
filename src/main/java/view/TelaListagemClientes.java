@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.ClienteController;
 import model.dao.ClienteDAO;
+import model.seletor.ClienteSeletor;
 import model.vo.Cliente;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,6 +38,7 @@ public class TelaListagemClientes extends JFrame{
 	ClienteController clienteController = new ClienteController();
 	List<Cliente> clientes=new ArrayList<Cliente>();
 	Cliente clienteSelecionado = new Cliente();
+	ClienteSeletor seletor = new ClienteSeletor();
 	private JTable tabela;
 	private JButton btnNovoCliente;
 	private JButton btnExcluir; 
@@ -52,6 +54,7 @@ public class TelaListagemClientes extends JFrame{
 				try {
 					TelaListagemClientes frame = new TelaListagemClientes();
 					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -121,111 +124,130 @@ public class TelaListagemClientes extends JFrame{
 		JButton btnNewButton = new JButton("Atualizar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				atualizarTabela();
 			}
 		});
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.BLACK);
 		separator.setBackground(Color.BLACK);
-		
+
 		textConsultaNome = new JTextField();
 		textConsultaNome.setColumns(10);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Nome");
-		
+
 		JLabel lblNewLabel_2 = new JLabel("cpf");
-		
+
 		textConsultaCPF = new JTextField();
 		textConsultaCPF.setColumns(10);
-		
+
 		textConsultaID = new JTextField();
 		textConsultaID.setColumns(10);
-		
+
 		JLabel lblNewLabel_3 = new JLabel("id");
+
+		JButton btnNewButton_1 = new JButton("pesuisar");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				seletor.setCpfCliente(textConsultaCPF.getText());
+				seletor.setNomeCliente(textConsultaNome.getText());
+				//	int id=Integer.parseInt(textConsultaID.getText());
+				seletor.setIdCliente(2);
+
+				atualizarTabela();
+
+
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
+				groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(separator, GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(tabela, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(btnNovoCliente, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
-							.addGap(30)
-							.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-							.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
-							.addGap(31)
-							.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap())
+						.addContainerGap()
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addComponent(tabela, GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addComponent(btnNovoCliente, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)
+										.addGap(30)
+										.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+										.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 157, GroupLayout.PREFERRED_SIZE)
+										.addGap(31)
+										.addComponent(btnExcluir, GroupLayout.PREFERRED_SIZE, 169, GroupLayout.PREFERRED_SIZE)))
+						.addContainerGap())
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(130)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(textConsultaNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblNewLabel_1))
-					.addGap(87)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textConsultaCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-							.addGap(73)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-								.addComponent(textConsultaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addGap(236))
-		);
+						.addGap(130)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(textConsultaNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblNewLabel_1))
+						.addGap(87)
+						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnNewButton_1)
+								.addComponent(lblNewLabel)
+								.addGroup(groupLayout.createSequentialGroup()
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(textConsultaCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+												.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+										.addGap(73)
+										.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+												.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+												.addComponent(textConsultaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+						.addGap(236))
+				);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+				groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(lblNewLabel)
-					.addGap(26)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNewLabel_1)
-						.addComponent(lblNewLabel_2)
-						.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textConsultaCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textConsultaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textConsultaNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(68)
-					.addComponent(tabela, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addComponent(separator, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnExcluir, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-						.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap())
-		);
+						.addContainerGap()
+						.addComponent(lblNewLabel)
+						.addGap(26)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblNewLabel_1)
+								.addComponent(lblNewLabel_2)
+								.addComponent(lblNewLabel_3, GroupLayout.PREFERRED_SIZE, 14, GroupLayout.PREFERRED_SIZE))
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(textConsultaCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textConsultaID, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textConsultaNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addGap(27)
+						.addComponent(btnNewButton_1)
+						.addGap(18)
+						.addComponent(tabela, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(separator, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+						.addPreferredGap(ComponentPlacement.RELATED)
+						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(btnExcluir, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+								.addComponent(btnNovoCliente, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+								.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 43, GroupLayout.PREFERRED_SIZE)
+								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 41, GroupLayout.PREFERRED_SIZE))
+						.addContainerGap())
+				);
 		getContentPane().setLayout(groupLayout);
 
 
 	}
 
 	private void atualizarTabela() {
-		clientes=clienteController.clientes();
-		tabela.setModel(new DefaultTableModel(new String[][] {{"nome","cpf","id"},},new String[] {"nome","cpf","id"}));
+
+		clientes=clienteController.listaConsulta(seletor);
+		tabela.setModel(new DefaultTableModel(new String[][] {{"id","cpf","nome"},},new String[] {"id","cpf","nome"}));
 		DefaultTableModel modelo=(DefaultTableModel)tabela.getModel();
+
 		for(Cliente c: clientes) {
 			String[] linha = new String[] {
-					c.getNome(),
-					c.getCpf(),
 					c.getId()+"",
-
+					c.getCpf(),
+					c.getNome(),
 			};
 			modelo.addRow(linha);
+
 		}
 
 	}
-	
-	
+
 }

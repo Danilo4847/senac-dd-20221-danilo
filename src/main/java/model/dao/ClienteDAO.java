@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import model.seletor.ClienteSeletor;
 import model.vo.Cliente;
 import model.vo.Endereco;
 import model.vo.LinhaTelefonica;
@@ -42,6 +43,9 @@ public class ClienteDAO {
 
 	/*-----------------------------------------------------------------------------------------------------------------------------*/
 
+	/**
+	 * @return
+	 */
 	public boolean atualizarCliente(Cliente id) {
 		boolean status = false;
 
@@ -108,6 +112,8 @@ public class ClienteDAO {
 
 	private Cliente construirDoResultSet(ResultSet resultado) throws SQLException {
 		Cliente clienteConsultado = new Cliente();
+		
+		try {
 		clienteConsultado.setId(resultado.getInt("id"));
 		clienteConsultado.setCpf(resultado.getString("cpf"));
 		clienteConsultado.setNome(resultado.getString("nome"));
@@ -118,7 +124,10 @@ public class ClienteDAO {
 
 		LinhaTelefonicaDAO linhaDAO = new LinhaTelefonicaDAO();
 		ArrayList<LinhaTelefonica> linhas = linhaDAO.consultarPorIdCliente(resultado.getInt("id"));
-
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("erro no construtor de result set de cliente "+e.getMessage());
+		}
 
 		return clienteConsultado;
 	}
@@ -164,6 +173,77 @@ public class ClienteDAO {
 
 
 	}
+public ArrayList<Cliente> listaClientes(ClienteSeletor selecionado){
+	Connection conexao = Banco.getConnection();
+	String query="SELECT*FROM CLIENTE c";
+	
+	if(selecionado.temFiltro()) {
+		query=cirarFiltros(query,selecionado);
+	}
+	
 
+	PreparedStatement stmt=Banco.getPreparedStatement(conexao, query);
+	ArrayList<Cliente>clientes=new ArrayList<Cliente>();
+	
+	if(selecionado.temPagina()) {
+		
+	}
+	
+	try {
+		ResultSet resultado=stmt.executeQuery();		
+	
+
+	while(resultado.next()) {
+		Cliente c=construirDoResultSet(resultado);
+		
+		
+		clientes.add(c);
+		
+	}
+	} catch (Exception e) {
+		e.printStackTrace();
+	
+	}
+	
+	return clientes;
+}
+	
+
+
+	private String cirarFiltros(String query, ClienteSeletor cliente) {
+		
+		query+=" where ";
+		boolean primeiro=true;
+		
+		if(cliente.getIdCliente()>0) {
+			if(!primeiro) {
+				query+=" and ";
+			}
+			query+=" c.id= "+cliente.getIdCliente();
+			primeiro=false;
+		}
+		if(cliente.getCpfCliente()!=null) { 
+			if(!primeiro) {
+				query+=" and ";
+			}
+			query+=" c.cpf like '% "+cliente.getCpfCliente()+" %'";
+		
+		}
+		else if(cliente.getNomeCliente()!=null) {
+			if(!primeiro) {
+				query+=" and ";
+			}
+			query+=" c.nome like '% "+cliente.getNomeCliente()+" '";
+			
+		}
+		
+		return query;
+	}
+	
+
+	
+	
+	
+	
 
 }
