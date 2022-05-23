@@ -175,10 +175,10 @@ public class ClienteDAO {
 	}
 public ArrayList<Cliente> listaClientes(ClienteSeletor selecionado){
 	Connection conexao = Banco.getConnection();
-	String query="SELECT*FROM CLIENTE c";
+	String query="SELECT * FROM CLIENTE c ";
 	
 	if(selecionado.temFiltro()) {
-		query=cirarFiltros(query,selecionado);
+		query=criarFiltros(query,selecionado);
 	}
 	
 
@@ -210,7 +210,7 @@ public ArrayList<Cliente> listaClientes(ClienteSeletor selecionado){
 	
 
 
-	private String cirarFiltros(String query, ClienteSeletor cliente) {
+	private String criarFiltros(String query, ClienteSeletor cliente) {
 		
 		query+=" where ";
 		boolean primeiro=true;
@@ -220,21 +220,22 @@ public ArrayList<Cliente> listaClientes(ClienteSeletor selecionado){
 				query+=" and ";
 			}
 			query+=" c.id= "+cliente.getIdCliente();
-			primeiro=false;
+			primeiro = false;
 		}
 		if(cliente.getCpfCliente()!=null) { 
 			if(!primeiro) {
 				query+=" and ";
 			}
-			query+=" c.cpf like '% "+cliente.getCpfCliente()+" %'";
-		
+			query+=" c.cpf like '%"+cliente.getCpfCliente()+"%'";
+			primeiro = false;
 		}
-		else if(cliente.getNomeCliente()!=null) {
+		
+		if(cliente.getNomeCliente()!=null) {
 			if(!primeiro) {
 				query+=" and ";
 			}
-			query+=" c.nome like '% "+cliente.getNomeCliente()+" '";
-			
+			query+=" c.nome like '%"+cliente.getNomeCliente()+"%'";
+			primeiro = false;
 		}
 		
 		return query;

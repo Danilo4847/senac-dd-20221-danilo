@@ -148,18 +148,23 @@ public class TelaListagemClientes extends JFrame{
 
 		JLabel lblNewLabel_3 = new JLabel("id");
 
-		JButton btnNewButton_1 = new JButton("pesuisar");
+		JButton btnNewButton_1 = new JButton("pesquisar");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				seletor.setCpfCliente(textConsultaCPF.getText());
 				seletor.setNomeCliente(textConsultaNome.getText());
-				//	int id=Integer.parseInt(textConsultaID.getText());
-				seletor.setIdCliente(2);
+			
+				try {
+					if(textConsultaID.getText() != null && !textConsultaID.getText().trim().isEmpty()) {
+						int id=Integer.parseInt(textConsultaID.getText());
+						seletor.setIdCliente(id);
+					}
+				} catch (NumberFormatException e2) {
+					JOptionPane.showMessageDialog(null, "Id inválido" );
+				}
 
 				atualizarTabela();
-
-
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());

@@ -1,12 +1,21 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-import javax.swing.JFrame;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controller.ClienteController;
@@ -17,19 +26,7 @@ import model.dao.TelefoneDAO;
 import model.vo.Cliente;
 import model.vo.Telefone;
 
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.SystemColor;
-import java.awt.event.ActionListener;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.awt.event.ActionEvent;
-import java.awt.Color;
-import java.awt.Toolkit;
-import javax.swing.ImageIcon;
-
-public class LinhaTelefonica extends JPane{
+public class LinhaTelefonica extends JPanel{
 	ClienteController clienteController = new ClienteController();
 	TelefoneController telefoneController = new TelefoneController();
 	LinhaTelefonicaController linhaTelefonicaController = new LinhaTelefonicaController();
@@ -44,10 +41,6 @@ public class LinhaTelefonica extends JPane{
 	private JButton btnAssociar;
 	private JButton btnLiberarLinha;
 	
-	
-	
-	
-
 	/**
 	 * Launch the application.
 	 */

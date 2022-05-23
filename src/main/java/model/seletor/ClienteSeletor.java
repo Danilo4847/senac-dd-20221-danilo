@@ -23,12 +23,7 @@ public class ClienteSeletor {
 	public void setLimite(int limite) {
 		this.limite = limite;
 	}
-	public int getPagina() {
-		return pagina;
-	}
-	public void setPagina(int pagina) {
-		this.pagina = pagina;
-	}
+
 	public int getIdCliente() {
 		return idCliente;
 	}
@@ -39,17 +34,24 @@ public class ClienteSeletor {
 		return nomeCliente;
 	}
 	public void setNomeCliente(String nomeCliente) {
-		nomeCliente = nomeCliente;
+		this.nomeCliente = nomeCliente;
 	}
 	public String getCpfCliente() {
 		return cpfCliente;
 	}
 	public void setCpfCliente(String cpfCliente) {
-		cpfCliente = cpfCliente;
+		
+		if(cpfCliente != null && !cpfCliente.trim().isEmpty()) {
+			this.cpfCliente = cpfCliente;
+		}
 	}
 	
-	
-	
+	public int getPagina() {
+		return pagina;
+	}
+	public void setPagina(int pagina) {
+		this.pagina = pagina;
+	}
 	public boolean temFiltro() {
 		if(this.idCliente>0) {
 			return true;
